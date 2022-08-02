@@ -21,12 +21,9 @@ let counter = 0;
 
 const game = new Phaser.Game(config);
 
-window.addEventListener('message', (e) => {
-    console.log(e)
-    const data = e.data
-})
-
 function create() {
+    const url_params = new URL(window.location.href).searchParams
+    console.log(`ID: ${url_params.get('PROLIFIC_PID')}, day: ${url_params.get('DAY')}`)
     text1 = this.add.text(10, 10, '', { fill: '#00ff00' })
     text2 = this.add.text(500, 10, `Cross origin isolation: ${window.crossOriginIsolated}\nClick 3x to send data`, { fill: '#ffff00' })
     this.input.on('pointerdown', (ptr) => {
