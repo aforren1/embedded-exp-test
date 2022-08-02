@@ -22,8 +22,8 @@ let counter = 0;
 const game = new Phaser.Game(config);
 
 function create() {
-    text1 = this.add.text(10, 10, '0', { fill: '#00ff00' })
-    text2 = this.add.text(500, 10, 'Click 3x to send data', { fill: '#ffff00' })
+    text1 = this.add.text(10, 10, '', { fill: '#00ff00' })
+    text2 = this.add.text(500, 10, `Cross origin isolation: ${window.crossOriginIsolated}\nClick 3x to send data`, { fill: '#ffff00' })
     this.input.on('pointerdown', (ptr) => {
         this.scale.startFullscreen()
     })
@@ -35,7 +35,6 @@ function create() {
 
     this.input.on('pointerdown', (ptr) => {
         counter++
-        text1.text = counter.toString()
         if (counter == 3) {
             console.log(data)
             window.parent.postMessage(JSON.stringify(data), '*')
@@ -44,5 +43,5 @@ function create() {
 }
 
 function update() {
-
+    text1.text = `t: ${performance.now()}`
 }
