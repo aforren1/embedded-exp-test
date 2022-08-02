@@ -38,6 +38,7 @@ function create() {
         if (counter == 3) {
             console.log(data)
             window.parent.postMessage(JSON.stringify(data), '*')
+            localStorage.setItem('foob', JSON.stringify(data))
         }
     })
 }
